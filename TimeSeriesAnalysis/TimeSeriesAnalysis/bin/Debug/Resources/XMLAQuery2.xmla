@@ -1,0 +1,241 @@
+<Create xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+    <ObjectDefinition>
+        <Database xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400">
+            <ID>MultidimensionalProject1</ID>
+            <Name>MultidimensionalProject1</Name>
+            <ddl200:CompatibilityLevel>1100</ddl200:CompatibilityLevel>
+            <Language>1033</Language>
+            <Collation>Latin1_General_CI_AS</Collation>
+            <DataSourceImpersonationInfo>
+                <ImpersonationMode>Default</ImpersonationMode>
+            </DataSourceImpersonationInfo>
+            <DataSources>
+                <DataSource xsi:type="RelationalDataSource">
+                    <ID>Deaths</ID>
+                    <Name>Deaths</Name>
+                    <ConnectionString>Provider=SQLNCLI11.1;Data Source=LILO\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=Deaths</ConnectionString>
+                    <ImpersonationInfo>
+                        <ImpersonationMode>Default</ImpersonationMode>
+                    </ImpersonationInfo>
+                    <Timeout>PT0S</Timeout>
+                </DataSource>
+                <DataSource xsi:type="RelationalDataSource">
+                    <ID>Deaths2_Test</ID>
+                    <Name>Deaths2_Test</Name>
+                    <ConnectionString>Provider=SQLNCLI11.1;Data Source=LILO\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=Deaths</ConnectionString>
+                    <ImpersonationInfo>
+                        <ImpersonationMode>Default</ImpersonationMode>
+                    </ImpersonationInfo>
+                    <Timeout>PT0S</Timeout>
+                </DataSource>
+            </DataSources>
+            <DataSourceViews>
+                <DataSourceView>
+                    <ID>Deaths</ID>
+                    <Name>Deaths</Name>
+                    <Annotations>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+                            <Value>true</Value>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CurrentLayout</Name>
+                            <Value>_ALL_TABLES_</Value>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:NameMatchingCriteria</Name>
+                            <Value>1</Value>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+                            <Value>true</Value>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Layouts</Name>
+                            <Value>
+                                <Layouts xmlns="">
+                                    <Diagram>
+                                        <Name>_ALL_TABLES_</Name>
+                                        <DiagramLayout />
+                                        <ShowRelationshipNames>False</ShowRelationshipNames>
+                                        <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
+                                        <DiagramViewPortLeft>0</DiagramViewPortLeft>
+                                        <DiagramViewPortTop>0</DiagramViewPortTop>
+                                        <DiagramBoundingLeft>0</DiagramBoundingLeft>
+                                        <DiagramBoundingTop>0</DiagramBoundingTop>
+                                        <DiagramZoom>100</DiagramZoom>
+                                    </Diagram>
+                                </Layouts>
+                            </Value>
+                        </Annotation>
+                    </Annotations>
+                    <DataSourceID>Deaths</DataSourceID>
+                    <Schema>
+                        <xs:schema id="Deaths" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+                            <xs:element name="Deaths" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+                                <xs:complexType>
+                                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                        <xs:element name="dbo_t2" msprop:DbTableName="t2" msprop:FriendlyName="t2" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="id" msprop:DbColumnName="id" msprop:FriendlyName="id" type="xs:dateTime" />
+                                                    <xs:element name="value" msprop:DbColumnName="value" msprop:FriendlyName="value" type="xs:int" />
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                                <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+                                    <xs:selector xpath=".//dbo_t2" />
+                                    <xs:field xpath="id" />
+                                </xs:unique>
+                            </xs:element>
+                        </xs:schema>
+                        <Deaths xmlns="" />
+                    </Schema>
+                </DataSourceView>
+                <DataSourceView>
+                    <ID>Deaths2_Test</ID>
+                    <Name>Deaths2_Test</Name>
+                    <Annotations>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+                            <Value>true</Value>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CurrentLayout</Name>
+                            <Value>_ALL_TABLES_</Value>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:NameMatchingCriteria</Name>
+                            <Value>1</Value>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+                            <Value>true</Value>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Layouts</Name>
+                            <Value>
+                                <Layouts xmlns="">
+                                    <Diagram>
+                                        <Name>_ALL_TABLES_</Name>
+                                        <DiagramLayout />
+                                        <ShowRelationshipNames>False</ShowRelationshipNames>
+                                        <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
+                                        <DiagramViewPortLeft>0</DiagramViewPortLeft>
+                                        <DiagramViewPortTop>0</DiagramViewPortTop>
+                                        <DiagramBoundingLeft>0</DiagramBoundingLeft>
+                                        <DiagramBoundingTop>0</DiagramBoundingTop>
+                                        <DiagramZoom>100</DiagramZoom>
+                                    </Diagram>
+                                </Layouts>
+                            </Value>
+                        </Annotation>
+                    </Annotations>
+                    <DataSourceID>Deaths2_Test</DataSourceID>
+                    <Schema>
+                        <xs:schema id="Deaths2_Test" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+                            <xs:element name="Deaths2_Test" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+                                <xs:complexType>
+                                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                        <xs:element name="dbo_t2" msprop:DbTableName="t2" msprop:FriendlyName="t2" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="id" msprop:DbColumnName="id" msprop:FriendlyName="id" type="xs:dateTime" />
+                                                    <xs:element name="value" msprop:DbColumnName="value" msprop:FriendlyName="value" type="xs:int" />
+                                                    <xs:element name="Amount" msprop:DbColumnName="Amount" msprop:FriendlyName="Amount" type="xs:int" minOccurs="0" />
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                                <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+                                    <xs:selector xpath=".//dbo_t2" />
+                                    <xs:field xpath="id" />
+                                </xs:unique>
+                            </xs:element>
+                        </xs:schema>
+                        <Deaths2_Test xmlns="" />
+                    </Schema>
+                </DataSourceView>
+                <DataSourceView>
+                    <ID>Deaths3_Test</ID>
+                    <Name>Deaths3_Test</Name>
+                    <Annotations>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+                            <Value>true</Value>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CurrentLayout</Name>
+                            <Value>_ALL_TABLES_</Value>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:NameMatchingCriteria</Name>
+                            <Value>1</Value>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+                            <Value>true</Value>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Layouts</Name>
+                            <Value>
+                                <Layouts xmlns="">
+                                    <Diagram>
+                                        <Name>_ALL_TABLES_</Name>
+                                        <DiagramLayout />
+                                        <ShowRelationshipNames>False</ShowRelationshipNames>
+                                        <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
+                                        <DiagramViewPortLeft>0</DiagramViewPortLeft>
+                                        <DiagramViewPortTop>0</DiagramViewPortTop>
+                                        <DiagramBoundingLeft>0</DiagramBoundingLeft>
+                                        <DiagramBoundingTop>0</DiagramBoundingTop>
+                                        <DiagramZoom>100</DiagramZoom>
+                                    </Diagram>
+                                </Layouts>
+                            </Value>
+                        </Annotation>
+                    </Annotations>
+                    <DataSourceID>Deaths</DataSourceID>
+                    <Schema>
+                        <xs:schema id="Deaths3_Test" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+                            <xs:element name="Deaths3_Test" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+                                <xs:complexType>
+                                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                        <xs:element name="dbo_t2" msprop:DbTableName="t2" msprop:FriendlyName="t2" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="id" msprop:DbColumnName="id" msprop:FriendlyName="id" type="xs:dateTime" />
+                                                    <xs:element name="value" msprop:DbColumnName="value" msprop:FriendlyName="value" type="xs:int" />
+                                                    <xs:element name="Amount" msprop:DbColumnName="Amount" msprop:FriendlyName="Amount" type="xs:int" minOccurs="0" />
+                                                    <xs:element name="Amount2" msprop:DbColumnName="Amount2" msprop:FriendlyName="Amount2" type="xs:float" minOccurs="0" />
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                                <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+                                    <xs:selector xpath=".//dbo_t2" />
+                                    <xs:field xpath="id" />
+                                </xs:unique>
+                            </xs:element>
+                        </xs:schema>
+                        <Deaths3_Test xmlns="" />
+                    </Schema>
+                </DataSourceView>
+            </DataSourceViews>
+        </Database>
+    </ObjectDefinition>
+</Create>
+

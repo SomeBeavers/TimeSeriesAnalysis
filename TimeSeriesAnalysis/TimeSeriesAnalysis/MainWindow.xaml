@@ -1,0 +1,229 @@
+﻿<Window x:Class="TimeSeriesAnalysis.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:toolkit="http://schemas.microsoft.com/wpf/2008/toolkit"
+        xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        Title="Time Series Analysis" Height="550" Width="1180"
+        Loaded="Window_Loaded">
+    <Grid>
+        <TabControl HorizontalAlignment="Left" Height="509" VerticalAlignment="Top" Width="1162">
+            <TabItem Header="Predict data">
+                <Grid Background="#FFE5E5E5">
+                    <ComboBox 
+                        HorizontalAlignment="Left" 
+                        Height="23" 
+                        Margin="196,26,0,0" 
+                        VerticalAlignment="Top" 
+                        Width="162"
+                        Loaded="ComboBox_Loaded"
+                        SelectionChanged="ComboBoxInitialData_SelectionChanged"/>
+                    <ComboBox 
+                        HorizontalAlignment="Left" 
+                        Height="23" 
+                        Margin="496,26,0,0" 
+                        VerticalAlignment="Top" 
+                        Width="162"
+                        Loaded="ComboBox_Loaded"
+                        SelectionChanged="ComboBoxInitialDataEnd_SelectionChanged"/>
+                    <Label Content="Initial data start date" HorizontalAlignment="Left" Height="23" Margin="21,26,0,0" VerticalAlignment="Top" Width="150"/>
+                    <Label Content="end date" HorizontalAlignment="Left" Height="23" Margin="415,26,0,0" VerticalAlignment="Top" Width="57"/>
+                    <ComboBox 
+                        HorizontalAlignment="Left" 
+                        Height="23" 
+                        Margin="196,67,0,0" 
+                        VerticalAlignment="Top" 
+                        Width="162"
+                        Loaded="ComboBox_Loaded"
+                        SelectionChanged="ComboBoxPredictionStartDate_SelectionChanged"/>
+                    <ComboBox 
+                        HorizontalAlignment="Left" 
+                        Height="23" 
+                        Margin="496,67,0,0" 
+                        VerticalAlignment="Top" 
+                        Width="162"
+                        Loaded="ComboBox_Loaded"
+                        SelectionChanged="ComboBoxPredictionEndDate_SelectionChanged"/>
+                    <Label Content="Prediction data start date" HorizontalAlignment="Left" Height="23" Margin="21,67,0,0" VerticalAlignment="Top" Width="150"/>
+                    <Label Content="end date" HorizontalAlignment="Left" Height="23" Margin="415,67,0,0" VerticalAlignment="Top" Width="57"/>
+                    <charting:Chart 
+                        Name="LineChart"
+                        DockPanel.Dock="Bottom" 
+                        Margin="23,166,60,15"
+                        Title="Deaths" 
+                        Height="300"
+                        MinWidth ="300"
+                        MaxWidth ="1200">
+                        <charting:Chart.Axes>
+                            <charting:LinearAxis Orientation="Y" Minimum="0" Maximum="200"/>
+                        </charting:Chart.Axes>
+
+                        <charting:LineSeries
+                            Title="Actual deaths"
+                            ItemsSource="{Binding [0]}"
+                            IndependentValuePath="Key"
+                            DependentValuePath="Value" 
+                            Background="White"
+                            Margin="21,19,22,22"/>
+                        <charting:LineSeries
+                            Title="Predicted deaths"
+                            ItemsSource="{Binding [0]}"
+                            IndependentValuePath="Key"
+                            DependentValuePath="Value" 
+                            Background="White"
+                            Margin="21,19,22,22"/>
+                    </charting:Chart>
+                    <Button Content="Predict" 
+                            HorizontalAlignment="Left" 
+                            Height="32" 
+                            Margin="501,106,0,0" 
+                            VerticalAlignment="Top" 
+                            Width="157"
+                            Click ="Predict_Click"/>
+                    <Label Content="Initial date period (in days)" HorizontalAlignment="Left" Height="34" Margin="722,26,0,0" VerticalAlignment="Top" Width="204"/>
+                    <Label Content="Prediction period (in days)" HorizontalAlignment="Left" Height="34" Margin="722,65,0,0" VerticalAlignment="Top" Width="204"/>
+                    <Label Content="Mean deviation" HorizontalAlignment="Left" Height="34" Margin="722,106,0,0" VerticalAlignment="Top" Width="204"/>
+                    <TextBox 
+                        Name ="InitialDatePeriodTextBox"
+                        HorizontalAlignment="Left" 
+                        Height="23" 
+                        Margin="931,26,0,0" 
+                        TextWrapping="Wrap" 
+                        VerticalAlignment="Top" 
+                        Width="165" 
+                        Text="{Binding Path=InitialDatePeriod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox 
+                        Name ="PredictionDatePeriodTextBox"
+                        HorizontalAlignment="Left" 
+                        Height="23" 
+                        Margin="931,67,0,0" 
+                        TextWrapping="Wrap" 
+                        Text="{Binding Path=PredictionDatePeriod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        VerticalAlignment="Top" 
+                        Width="165"/>
+                    <TextBox 
+                        Name ="MeanDeviationTextBox"
+                        HorizontalAlignment="Left" 
+                        Height="23" 
+                        Margin="931,110,0,0" 
+                        TextWrapping="Wrap" 
+                        Text="{Binding Path=PredictionDatePeriod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        VerticalAlignment="Top" 
+                        Width="165"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Analyze results">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid 
+                        Name="DeviationsDataGrid"
+                        HorizontalAlignment="Left" 
+                        Height="451" 
+                        Margin="10,20,0,0" 
+                        VerticalAlignment="Top" 
+                        Width="344"/>
+                    <Label Content="Initial date period (in days)" HorizontalAlignment="Left" Height="34" Margin="369,47,0,0" VerticalAlignment="Top" Width="204"/>
+                    <Label Content="Prediction period (in days)" HorizontalAlignment="Left" Height="34" Margin="369,86,0,0" VerticalAlignment="Top" Width="204"/>
+                    <Label Content="Mean deviation" HorizontalAlignment="Left" Height="34" Margin="369,127,0,0" VerticalAlignment="Top" Width="204"/>
+                    <TextBox 
+                    	x:Name ="InitialDatePeriodMaximumDeviationTextBox"
+                    	HorizontalAlignment="Left" 
+                    	Height="23" 
+                    	Margin="578,47,0,0" 
+                    	TextWrapping="Wrap" 
+                    	VerticalAlignment="Top" 
+                    	Width="165" 
+                    	Text="{Binding InitialDatePeriodMaximumDeviation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox 
+                    	x:Name ="PredictionDatePeriodMaximumDeviationTextBox"
+                    	HorizontalAlignment="Left" 
+                    	Height="23" 
+                    	Margin="578,88,0,0" 
+                    	TextWrapping="Wrap" 
+                    	Text="{Binding PredictionDatePeriodMaximumDeviation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    	VerticalAlignment="Top" 
+                    	Width="165"/>
+                    <TextBox 
+                    	x:Name ="MaximumDeviationTextBox"
+                    	HorizontalAlignment="Left" 
+                    	Height="23" 
+                    	Margin="578,131,0,0" 
+                    	TextWrapping="Wrap" 
+                    	Text="{Binding MaximumDeviation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    	VerticalAlignment="Top" 
+                    	Width="165"/>
+                    <Label Content="Initial date period (in days)" HorizontalAlignment="Left" Height="34" Margin="760,47,0,0" VerticalAlignment="Top" Width="204"/>
+                    <Label Content="Prediction period (in days)" HorizontalAlignment="Left" Height="34" Margin="760,86,0,0" VerticalAlignment="Top" Width="204"/>
+                    <Label Content="Mean deviation" HorizontalAlignment="Left" Height="34" Margin="760,127,0,0" VerticalAlignment="Top" Width="204"/>
+                    <TextBox 
+                    	x:Name ="InitialDatePeriodMinimumDeviationTextBox"
+                    	HorizontalAlignment="Left" 
+                    	Height="23" 
+                    	Margin="969,47,0,0" 
+                    	TextWrapping="Wrap" 
+                    	VerticalAlignment="Top" 
+                    	Width="165" 
+                    	Text="{Binding InitialDatePeriodMinimumDeviation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox 
+                    	x:Name ="PredictionDatePeriodMinimumDeviationTextBox"
+                    	HorizontalAlignment="Left" 
+                    	Height="23" 
+                    	Margin="969,88,0,0" 
+                    	TextWrapping="Wrap" 
+                    	Text="{Binding PredictionDatePeriodMinimumDeviation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    	VerticalAlignment="Top" 
+                    	Width="165"/>
+                    <TextBox 
+                    	x:Name ="MinimumDeviationTextBox"
+                    	HorizontalAlignment="Left" 
+                    	Height="23" 
+                    	Margin="969,131,0,0" 
+                    	TextWrapping="Wrap" 
+                    	Text="{Binding MinimumDeviation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    	VerticalAlignment="Top" 
+                    	Width="165"/>
+                    <Label Content="Maximum Deviation" HorizontalAlignment="Left" Height="34" Margin="503,8,0,0" VerticalAlignment="Top" Width="204"/>
+                    <Label Content="Minimum deviation" HorizontalAlignment="Left" Height="34" Margin="880,8,0,0" VerticalAlignment="Top" Width="204"/>
+                    <charting:Chart 
+                        Name="LineChartAnalysis"
+                        DockPanel.Dock="Bottom" 
+                        Margin="369,166,395,15"
+                        Title="Mean deviation/Initial data period" 
+                        Height="300"
+                        MinWidth ="300"
+                        MaxWidth ="1200">
+                        <charting:Chart.Axes>
+                            <charting:LinearAxis Orientation="Y" Minimum="0" Maximum="70"/>
+                        </charting:Chart.Axes>
+
+                        <charting:LineSeries
+                            Title="Mean Deviation"
+                            ItemsSource="{Binding [0]}"
+                            IndependentValuePath="Key"
+                            DependentValuePath="Value" 
+                            Background="White"
+                            Margin="21,19,22,22"/>
+                    </charting:Chart>
+                    <charting:Chart 
+                    	x:Name="LineChartAnalysis_Copy" 
+                    	Margin="766,166,0,15"
+                    	Title="Mean deviation/Prediction data period" 
+                    	Height="300"
+                    	MinWidth ="300"
+                    	MaxWidth ="1200">
+                        <charting:Chart.Axes>
+                            <charting:LinearAxis Orientation="Y" Minimum="0" Maximum="70"/>
+                        </charting:Chart.Axes>
+
+                        <charting:LineSeries
+                    		Title="Mean Deviation"
+                    		ItemsSource="{Binding [0]}"
+                    		IndependentValuePath="Key"
+                    		DependentValuePath="Value" 
+                    		Background="White"
+                    		Margin="21,19,22,22"/>
+                    </charting:Chart>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

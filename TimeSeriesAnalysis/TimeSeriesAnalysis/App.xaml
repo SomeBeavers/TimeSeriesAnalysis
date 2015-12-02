@@ -1,0 +1,65 @@
+﻿<Application x:Class="TimeSeriesAnalysis.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ControlTemplate x:Key="CommonAreaSeriesDataPointTemplate" TargetType="chartingToolkit:AreaDataPoint">
+            <!--Comment out data points from the default template; just an empty template-->
+            <Grid x:Name="Root" Opacity="1">
+                <ToolTipService.ToolTip>
+            <StackPanel Margin="2,2,2,2">
+                <ContentControl Content="{TemplateBinding FormattedDependentValue}" />
+                <ContentControl Content="{TemplateBinding FormattedIndependentValue}" />
+            </StackPanel>
+        </ToolTipService.ToolTip>
+        <Ellipse StrokeThickness="{TemplateBinding BorderThickness}" Stroke="{TemplateBinding BorderBrush}" Fill="{TemplateBinding Background}" />
+            </Grid>
+        </ControlTemplate>
+        <Style x:Key="CommonAreaSeriesDataPoint" TargetType="chartingToolkit:AreaDataPoint">
+            <Setter Property="Background" Value="{StaticResource CommonAreaSeriesBackground}" />
+            <Setter Property="Template" Value="{StaticResource CommonAreaSeriesDataPointTemplate}" />
+        </Style>
+        <Style x:Key="CommonAreaSeriesPath" TargetType="Path">
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Stroke" Value="DarkGray" />
+            <!--<Setter Property="Effect" Value="{StaticResource DialogDropShadow}" />-->
+        </Style>
+        <ControlTemplate x:Key="CommonLineSeriesDataPointTemplate" TargetType="chartingToolkit:LineDataPoint">
+            <!--Comment out data points from the default template; just an empty template-->
+            <Grid x:Name="Root" Opacity="1">
+                <ToolTipService.ToolTip>
+            <StackPanel Margin="2,2,2,2">
+                <ContentControl Content="{TemplateBinding FormattedDependentValue}" />
+                <ContentControl Content="{TemplateBinding FormattedIndependentValue}" />
+                <!--Example of how to access the bound business object-->
+                <ContentControl Content="{Binding Amount}" DataContext="{TemplateBinding DataContext}" />
+                </StackPanel>
+        </ToolTipService.ToolTip>
+                <Ellipse StrokeThickness="{TemplateBinding BorderThickness}" Stroke="{TemplateBinding BorderBrush}" Fill="{TemplateBinding Background}" />
+            </Grid>
+        </ControlTemplate>
+        <Style x:Key="CommonLineSeriesDataPoint" TargetType="chartingToolkit:LineDataPoint">
+            <Setter Property="IndependentValueStringFormat" Value="{}{0:yyyy}" />
+            <Setter Property="DependentValueStringFormat" Value="{}{0:c0}" />
+            <Setter Property="Background" Value="#FF0077CC" />
+            <Setter Property="BorderBrush" Value="White" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="Template" Value="{StaticResource CommonLineSeriesDataPointTemplate}" />
+        </Style>
+        <Style x:Key="CommonLineSeriesPolyline" TargetType="Polyline">
+            <Setter Property="StrokeThickness" Value="1" />
+            <!--<Setter Property="Effect" Value="{StaticResource DialogDropShadow}" />-->
+        </Style>
+        <!-- Implicit non-Key'd Styles BasedOn Common Explicit Key'd Styles above -->
+        <Style TargetType="chartingToolkit:AreaSeries">
+            <Setter Property="DataPointStyle" Value="{StaticResource CommonAreaSeriesDataPoint}" />
+            <Setter Property="PathStyle" Value="{StaticResource CommonAreaSeriesPath}" />
+        </Style>
+        <Style TargetType="chartingToolkit:LineSeries">
+            <!--<Setter Property="DataPointStyle" Value="{StaticResource CommonLineSeriesDataPoint}" />-->
+            <Setter Property="PolylineStyle" Value="{StaticResource CommonLineSeriesPolyline}" />
+        </Style>
+    </Application.Resources>
+</Application>

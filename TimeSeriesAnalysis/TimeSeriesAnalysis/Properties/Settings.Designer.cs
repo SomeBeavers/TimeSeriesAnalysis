@@ -22,26 +22,5 @@ namespace TimeSeriesAnalysis.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=lilo\\sqlexpress;Initial Catalog=Deaths;Integrated Security=True")]
-        public string DeathsConnectionString {
-            get {
-                return ((string)(this["DeathsConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Provider=MSOLAP.6;Data Source=localhost;Integrated Security=SSPI;Initial Catalog=" +
-            "MultidimensionalProject1")]
-        public string ConnectionStringAnalysisServices {
-            get {
-                return ((string)(this["ConnectionStringAnalysisServices"]));
-            }
-        }
     }
 }

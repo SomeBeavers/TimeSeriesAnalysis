@@ -54,7 +54,7 @@
                         MinWidth ="300"
                         MaxWidth ="1200">
                         <charting:Chart.Axes>
-                            <charting:LinearAxis Orientation="Y" Minimum="0" Maximum="200"/>
+                            <charting:LinearAxis Orientation="Y" Minimum="0" Maximum="250"/>
                         </charting:Chart.Axes>
 
                         <charting:LineSeries
@@ -191,7 +191,7 @@
                         MinWidth ="300"
                         MaxWidth ="1200">
                         <charting:Chart.Axes>
-                            <charting:LinearAxis Orientation="Y" Minimum="0" Maximum="70"/>
+                            <charting:LinearAxis Orientation="Y" Minimum="-10" Maximum="70"/>
                         </charting:Chart.Axes>
 
                         <charting:LineSeries
@@ -210,7 +210,7 @@
                     	MinWidth ="300"
                     	MaxWidth ="1200">
                         <charting:Chart.Axes>
-                            <charting:LinearAxis Orientation="Y" Minimum="0" Maximum="70"/>
+                            <charting:LinearAxis Orientation="Y" Minimum="-10" Maximum="70"/>
                         </charting:Chart.Axes>
 
                         <charting:LineSeries
